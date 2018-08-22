@@ -1,6 +1,7 @@
-int numToken(char *buffer)
+#include "header.h"
+
+int numToken(char *buffer, char *delims)
 {
-	char *delims;
 	int numTokes, i, j;
 
 	delims = " \n";
