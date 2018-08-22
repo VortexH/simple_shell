@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 int numToken(char *buffer, char *delims);
 char **tokenize(char *buffer, int tokenNum, char *delims);
