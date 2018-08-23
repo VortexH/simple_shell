@@ -19,7 +19,6 @@ int main(int argc, char **argv, char **env)
 	int tokenNum = 0;
 	int check;
 
-	(void)argv;
 	(void)env;
 	(void)argc;
 
@@ -41,7 +40,7 @@ int main(int argc, char **argv, char **env)
 			tokens = tokenize(buffer, tokenNum, delims);
 			if (!tokens)
 				return (-1);
-			execute_command(tokens);
+			execute_command(tokens, argv);
 		}
 		else
 			return (-1);

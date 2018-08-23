@@ -9,7 +9,7 @@
 #include <sys/wait.h>
 
 int numToken(char *buffer, char *delims);
-int execute_command(char **tokens);
+int execute_command(char **tokens, char **argv);
 char **tokenize(char *buffer, int tokenNum, char *delims);
 
 
