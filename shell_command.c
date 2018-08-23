@@ -11,7 +11,7 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char *delims = " \n";
+	char *delims = " ";
 	char *buffer;
 	char **tokens;
 	size_t n = 0;
@@ -33,6 +33,10 @@ int main(int argc, char **argv, char **env)
 
 		if (getReturn == -1)
 			return (-1);
+
+
+		if (*buffer == '\n')
+			continue;
 
 		tokenNum = numToken(buffer, delims);
 		if (tokenNum)
