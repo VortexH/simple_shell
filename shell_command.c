@@ -14,7 +14,7 @@ int main(int argc, char **argv, char **env)
 	char *delims = " \n";
 	char *buffer;
 	char **tokens;
-	size_t n = 1024;
+	size_t n = 0;
 	ssize_t getReturn;
 	int tokenNum = 0;
 	int check;
@@ -23,10 +23,7 @@ int main(int argc, char **argv, char **env)
 	(void)env;
 	(void)argc;
 
-	buffer = malloc(n);
-	if (!buffer)
-		return (-1);
-
+	buffer = NULL;
 
 	check = 1;
 	while (check)

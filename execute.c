@@ -15,10 +15,10 @@ int execute_command(char **tokens)
 	if (pid == 0)
 	{
 		if ((execve(tokens[0], tokens, NULL)) == -1)
-			return (-1);
+			exit(EXIT_FAILURE);
 
 	}
-	else if (pid > 0)
+	else
 	{
 		wait(&status);
 	}
