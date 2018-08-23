@@ -24,6 +24,8 @@ char **tokenize(char *buffer, int tokenNum, char *delims)
 
 	i = 0;
 	token = strtok(buffer, delims);
+	if (!strcmp("exit", token))
+		return (NULL);
 	while (token != NULL)
 	{
 		tokenArray[i] = token;
