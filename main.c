@@ -11,7 +11,8 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char *buffer, *delims;
+	char *buffer;
+	char *delims = " \t\n";
 	char **token_array;
 	size_t n;
 	ssize_t getReturn;
@@ -22,7 +23,6 @@ int main(int argc, char **argv, char **env)
 
 	buffer = NULL;
 	check = 1;
-	delims = " \t\n";
 	n = 0;
 	while (check)
 	{

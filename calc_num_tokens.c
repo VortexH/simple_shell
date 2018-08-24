@@ -9,23 +9,33 @@
  * Return: Number of tokens.
  */
 
-int numToken(char *buffer, char *delims)
+int numToken(char *b, char *d)
 {
-	int i, j, n;
-	char *b, *d;
+	int len, n;
 
-	b = buffer;
-	d = delims;
 	n = 0;
-	for (i = 0; b[i]; i++)
+	while (b)
 	{
-		for (j = 0; d[j]; j++)
-		{
-			if (b[i] != d[j] && b[i++] == d[j])
-				n++;
-		}
+		len = _strspn(b, d);
+/**
+		printf("Number of bytes with delimiter: %d\n", len);
+**/
+		b += len;
+/**
+		printf("String after moving len many bytes: %s\n", b);
+**/
+		b = _strpbrk(b, d);
+/**
+		printf("String after strpbrk: %s\n", b);
+**/
+		if (b)
+			n++;
+/**
+		printf("Number of tokens: %d\n", n);
+**/
 	}
 
-	printf("Number of tokens: %d\n", n);
 	return (n);
+
+	
 }
