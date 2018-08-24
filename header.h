@@ -9,8 +9,8 @@
 #include <sys/wait.h>
 
 int numToken(char *buffer, char *delims);
-int execute_command(char **tokens, char **argv);
-char **tokenize(char *buffer, int tokenNum, char *delims);
+char **tokenize(char *buffer, int nTokens, char *delims);
+int execute_command(char **token_array, char **argv);
 
 
 

@@ -6,7 +6,7 @@
  * Return: 0 For success
  */
 
-int execute_command(char **tokens, char **argv)
+int execute_command(char **token_array, char **argv)
 {
 	pid_t pid;
 	int status;
@@ -14,7 +14,7 @@ int execute_command(char **tokens, char **argv)
 	pid = fork();
 	if (pid == 0)
 	{
-		if ((execve(tokens[0], tokens, NULL)) == -1)
+		if ((execve(token_array[0], token_array, NULL)) == -1)
 		{
 			write(1, argv[0], strlen(argv[0]));
 			perror(" ");

@@ -11,43 +11,36 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char *delims = " ";
-	char *buffer;
-	char **tokens;
-	size_t n = 0;
+	char *buffer, *delims;
+	char **token_array;
+	size_t n;
 	ssize_t getReturn;
-	int tokenNum = 0;
-	int check;
+	int nTokens, check;
 
 	(void)env;
 	(void)argc;
 
 	buffer = NULL;
-
 	check = 1;
+	delims = " \t\n";
+	n = 0;
 	while (check)
 	{
-		write(1, "$ ", 2);
+		write(1, ">>>> ", 5);
 
 		getReturn = getline(&buffer, &n, stdin);
-
+		printf("Num Chars Read: %lu\n", (unsigned long) getReturn);
 		if (getReturn == -1)
 			return (-1);
 
-
-		if (*buffer == '\n')
-			continue;
-
-		tokenNum = numToken(buffer, delims);
-		if (tokenNum)
+		nTokens = numToken(buffer, delims);
+		if (nTokens)
 		{
-			tokens = tokenize(buffer, tokenNum, delims);
-			if (!tokens)
+			token_array = tokenize(buffer, nTokens, delims);
+			if (!token_array)
 				return (-1);
-			execute_command(tokens, argv);
+			execute_command(token_array, argv);
 		}
-		else
-			return (-1);
 
 	}
 	return (0);

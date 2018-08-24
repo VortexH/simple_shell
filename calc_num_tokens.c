@@ -11,22 +11,21 @@
 
 int numToken(char *buffer, char *delims)
 {
-	int numTokes, i, j;
+	int i, j, n;
+	char *b, *d;
 
-	numTokes = 0;
-	if (*buffer == '\n')
-		return (1);
-	for (i = 0; buffer[i]; i++)
+	b = buffer;
+	d = delims;
+	n = 0;
+	for (i = 0; b[i]; i++)
 	{
-		for (j = 0; delims[j]; j++)
+		for (j = 0; d[j]; j++)
 		{
-			if (buffer[i] == delims[j])
-			{
-				numTokes++;
-				break;
-			}
+			if (b[i] != d[j] && b[i++] == d[j])
+				n++;
 		}
 	}
 
-	return (numTokes);
+	printf("Number of tokens: %d\n", n);
+	return (n);
 }

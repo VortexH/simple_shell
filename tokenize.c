@@ -12,13 +12,13 @@
  *
  * Return: The array of tokens
 */
-char **tokenize(char *buffer, int tokenNum, char *delims)
+char **tokenize(char *buffer, int nTokens, char *delims)
 {
 	char **tokenArray;
 	char *token;
 	int i;
 
-	tokenArray = malloc(sizeof(char *) * (tokenNum + 1));
+	tokenArray = malloc(sizeof(char *) * (nTokens + 1));
 	if (!tokenArray)
 		return (NULL);
 
