@@ -17,7 +17,7 @@ int execute_command(char **token_array, char **argv)
 	{
 		if ((execve(token_array[0], token_array, NULL)) == -1)
 		{
-			write(1, argv[0], strlen(argv[0]));
+			write(1, argv[0], _strlen(argv[0]));
 			perror(" ");
 			exit(EXIT_FAILURE);
 		}
