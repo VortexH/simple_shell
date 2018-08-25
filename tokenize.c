@@ -4,7 +4,7 @@
  * tokenize - returns an array of null terminated tokens
  *
  * @buffer: contains the input from stdin
- * @tokenNum: contains the number of tokens found in the buffer
+ * @nTokens: contains the number of tokens found in the buffer
  * @delims: a string of delimiters separating tokens
  *
  * Description: calls strtok to get token and stores it in a generic array of

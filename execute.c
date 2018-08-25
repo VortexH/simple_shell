@@ -2,7 +2,8 @@
 
 /**
  * execute_command - executing the command passed in as token[0]
- * @tokens: Pointer to array of pointers of tokens
+ * @token_array: Pointer to array of pointers of tokens
+ * @argv: Argument array of values passed in
  * Return: 0 For success
  */
 
