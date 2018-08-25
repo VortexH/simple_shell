@@ -1,5 +1,14 @@
 #include "header.h"
 
+/**
+ * search_tokens - searching the path_array
+ * @path_array: Array of strings found in path from env
+ * @token: First token from input
+ * Description: Searching our path array for the token, effectively searching
+ * the path for a directory containing the command that was input
+ * Return: The token, either concatenated with the command or directly the path
+ */
+
 char *search_tokens(char **path_array, char *token)
 {
 	int string_result, i = 0;
@@ -9,26 +18,22 @@ char *search_tokens(char **path_array, char *token)
 
 	if (token[0] == '/')
 		return (token);
-	else
+	while (path_array[i])
 	{
-		while (path_array[i])
+		directory = opendir(path_array[i]);
+		dirent = readdir(directory);
+		while (dirent)
 		{
-			directory = opendir(path_array[i]);
-			dirent = readdir(directory);
-			while (dirent)
+			string_result = _strcmp(dirent->d_name, token);
+			if (!string_result)
 			{
-				string_result = _strcmp(dirent->d_name, token);
-				if (!string_result)
-				{
-					tmp_token = _strcat(path_array[i], "/");
-					token = _strcat(tmp_token, token);
-					return(token);
-				}
-				dirent = readdir(directory);
+				tmp_token = _strcat(path_array[i], "/");
+				token = _strcat(tmp_token, token);
+				return (token);
 			}
-			i++;
+			dirent = readdir(directory);
 		}
+		i++;
 	}
-	printf("%s", token);
 	return (token);
 }

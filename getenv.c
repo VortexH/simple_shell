@@ -1,5 +1,12 @@
 #include "header.h"
 
+/**
+ * _getenv - our own get environment function
+ * @env: Environment variable containing all env strings
+ * Description: Gets specifically the path string from env
+ * Return: The path string
+ */
+
 char *_getenv(char **env)
 {
 	int i, j;

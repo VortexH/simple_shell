@@ -4,6 +4,7 @@
  * execute_command - executing the command passed in as token[0]
  * @token_array: Pointer to array of pointers of tokens
  * @argv: Argument array of values passed in
+ * @path_array: Array of pointers to path strings
  * Return: 0 For success
  */
 
