@@ -21,5 +21,6 @@ char *_getenv(char **env);
 char **get_path_array(char **env);
 char *search_tokens(char **path_array, char *token);
 char *_strcat(char *dest, char *src);
+int _strcmp(char *s1, char *s2)
 
 #endif

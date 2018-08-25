@@ -5,7 +5,7 @@ char *search_tokens(char **path_array, char *token)
 	int string_result, i = 0;
 	DIR *directory;
 	struct dirent *dirent;
-	char *temp_token;
+	char *tmp_token;
 
 	if (token[0] == '/')
 		return (token);
@@ -17,11 +17,11 @@ char *search_tokens(char **path_array, char *token)
 			dirent = readdir(directory);
 			while (dirent)
 			{
-				string_result = strcmp(dirent->d_name, token);
+				string_result = _strcmp(dirent->d_name, token);
 				if (!string_result)
 				{
-					temp_token = strcat(path_array[i], "/");
-					token = _strcat(temp_token, token);
+					tmp_token = _strcat(path_array[i], "/");
+					token = _strcat(tmp_token, token);
 					return(token);
 				}
 				dirent = readdir(directory);
@@ -29,5 +29,6 @@ char *search_tokens(char **path_array, char *token)
 			i++;
 		}
 	}
-	return (NULL);
+	printf("%s", token);
+	return (token);
 }
