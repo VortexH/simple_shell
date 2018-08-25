@@ -24,7 +24,7 @@ char **tokenize(char *buffer, int nTokens, char *delims)
 
 	i = 0;
 	token = strtok(buffer, delims);
-	if (!strcmp("exit", token))
+	if (!_strcmp("exit", token))
 		return (NULL);
 	while (token != NULL)
 	{
