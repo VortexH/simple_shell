@@ -9,27 +9,24 @@
  * Return: 0 for success, -1 for failure
  */
 
-int main(int argc, char **argv, char **env)
+int main(au int argc, char **argv, char **env)
 {
-	char *buffer;
+	char *buffer = NULL;
 	char *delims = " \t\n";
-	char **token_array;
-	size_t n;
+	char **token_array, **path_array;
+	size_t n = 0;
 	ssize_t getReturn;
-	int nTokens, check;
+	int nTokens, check = 1;
 
-	(void)env;
-	(void)argc;
-
-	buffer = NULL;
-	check = 1;
-	n = 0;
+	path_array = get_path_array(env);
+	if (path_array != NULL)
+		printf("asldfja\n");
+	
 	while (check)
 	{
 		write(1, ">>>> ", 5);
 
 		getReturn = getline(&buffer, &n, stdin);
-		printf("Num Chars Read: %lu\n", (unsigned long) getReturn);
 		if (getReturn == -1)
 			return (-1);
 
