@@ -18,10 +18,9 @@ char **get_path_array(char **env)
 	char **path_array;
 
 	path = _getenv(env);
-	path  = strcat(path, "\n");
+	path  = _strcat(path, "\n");
 	nTokens = numToken(path, ":\n");
 	path_array = tokenize(path, nTokens, ":");
 
 	return (path_array);
 }
-

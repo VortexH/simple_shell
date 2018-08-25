@@ -19,9 +19,7 @@ int main(au int argc, char **argv, char **env)
 	int nTokens, check = 1;
 
 	path_array = get_path_array(env);
-	if (path_array != NULL)
-		printf("asldfja\n");
-	
+
 	while (check)
 	{
 		write(1, ">>>> ", 5);
@@ -36,7 +34,7 @@ int main(au int argc, char **argv, char **env)
 			token_array = tokenize(buffer, nTokens, delims);
 			if (!token_array)
 				return (-1);
-			execute_command(token_array, argv);
+			execute_command(token_array, argv, path_array);
 		}
 
 	}
