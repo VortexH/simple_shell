@@ -11,29 +11,27 @@
 
 char *search_tokens(char **path_array, char *token)
 {
-	int string_result, i = 0;
-	DIR *directory;
-	struct dirent *dirent;
-	char *tmp_token;
+	int i = 0;
+	char *tmp;
+	char *pathSlashed;
+	char *copy;
 
 	if (token[0] == '/')
 		return (token);
 	while (path_array[i])
 	{
-		directory = opendir(path_array[i]);
-		dirent = readdir(directory);
-		while (dirent)
+		copy = strdup(path_array[i]);
+		pathSlashed = strcat(copy, "/");
+		tmp = strcat(pathSlashed, token);
+
+		if (!access(tmp, F_OK))
 		{
-			string_result = _strcmp(dirent->d_name, token);
-			if (!string_result)
-			{
-				tmp_token = _strcat(path_array[i], "/");
-				token = _strcat(tmp_token, token);
-				return (token);
-			}
-			dirent = readdir(directory);
+			if (!access(tmp, R_OK | X_OK))
+				return (tmp);
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
+
 	return (token);
 }

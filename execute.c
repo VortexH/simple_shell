@@ -13,11 +13,12 @@ int execute_command(char **token_array, char **argv, char **path_array)
 	pid_t pid;
 	int status;
 
+
+	token_array[0] = search_tokens(path_array, token_array[0]);
+
 	pid = fork();
 	if (pid == 0)
 	{
-		token_array[0] = search_tokens(path_array, token_array[0]);
-		printf("%s\n", token_array[0]);
 		if ((execve(token_array[0], token_array, NULL)) == -1)
 		{
 			write(1, argv[0], _strlen(argv[0]));

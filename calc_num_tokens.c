@@ -21,6 +21,8 @@ int numToken(char *b, char *d)
 		b = _strpbrk(b, d);
 		if (b)
 			n++;
+		else
+		  n++;
 	}
 
 	return (n);
