@@ -6,6 +6,7 @@
  * @buffer: contains the input from stdin
  * @nTokens: contains the number of tokens found in the buffer
  * @delims: a string of delimiters separating tokens
+ * @env: environment variable
  *
  * Description: calls strtok to get token and stores it in a generic array of
  * tokens.

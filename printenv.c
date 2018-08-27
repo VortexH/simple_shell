@@ -14,9 +14,7 @@ void printenv(char **env)
 
 	for (i = 0; env[i]; i++)
 	{
-		write (1, env[i], _strlen(env[i]));
-		write (1, "\n", 1);
+		write(1, env[i], _strlen(env[i]));
+		write(1, "\n", 1);
 	}
 }
-	
-	
