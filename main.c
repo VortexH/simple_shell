@@ -31,7 +31,7 @@ int main(au int argc, char **argv, char **env)
 		nTokens = numToken(buffer, delims);
 		if (nTokens)
 		{
-			token_array = tokenize(buffer, nTokens, delims);
+			token_array = tokenize(buffer, nTokens, delims, env);
 			if (!token_array)
 				return (-1);
 			execute_command(token_array, argv, path_array);

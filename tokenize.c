@@ -12,20 +12,25 @@
  *
  * Return: The array of tokens
 */
-char **tokenize(char *buffer, int nTokens, char *delims)
+char **tokenize(char *buffer, int nTokens, char *delims, char **env)
 {
 	char **tokenArray;
 	char *token;
 	int i;
 
+	/** allocate blocks for tokens and NULL pointer **/
 	tokenArray = malloc(sizeof(char *) * (nTokens + 1));
 	if (!tokenArray)
 		return (NULL);
 
 	i = 0;
 	token = strtok(buffer, delims);
+
 	if (!_strcmp("exit", token))
-		return (NULL);
+		exit(EXIT_FAILURE);
+	if (!_strcmp("env", token))
+		printenv(env);
+
 	while (token != NULL)
 	{
 		tokenArray[i] = token;

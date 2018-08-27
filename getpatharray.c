@@ -22,10 +22,9 @@ char **get_path_array(char **env)
 	path = _getenv(env);
 	copy = strdup(path);
 	nTokens = numToken(copy, ":\0");
-	path_array = tokenize(copy, nTokens, ":\0");
+	path_array = tokenize(copy, nTokens, ":\0", env);
 
 
-	
 
 	return (path_array);
 }
