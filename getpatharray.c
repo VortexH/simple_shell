@@ -16,13 +16,13 @@ char **get_path_array(char **env)
 	char *path;
 	int nTokens;
 	char **path_array;
-	char *copy;
+	char *path_copy;
 
 
 	path = _getenv(env);
-	copy = strdup(path);
-	nTokens = numToken(copy, ":\0");
-	path_array = tokenize(copy, nTokens, ":\0", env);
+	path_copy = strdup(path);
+	nTokens = numToken(path_copy, ":\0");
+	path_array = tokenize(path_copy, nTokens, ":\0", env);
 
 
 

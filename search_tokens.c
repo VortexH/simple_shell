@@ -14,14 +14,14 @@ char *search_tokens(char **path_array, char *token)
 	int i = 0;
 	char *tmp;
 	char *pathSlashed;
-	char *copy;
+	char *direc_copy;
 
 	if (token[0] == '/')
 		return (token);
 	while (path_array[i])
 	{
-		copy = strdup(path_array[i]);
-		pathSlashed = strcat(copy, "/");
+		direc_copy = strdup(path_array[i]);
+		pathSlashed = strcat(direc_copy, "/");
 		tmp = strcat(pathSlashed, token);
 
 		if (!access(tmp, F_OK))
