@@ -18,6 +18,7 @@ int main(au int argc, char **argv, char **env)
 	mlcs.loop_count = 1;
 	mlcs.argv = argv;
 	mlcs.env = env;
+	mlcs.buffer = NULL;
 	/** delimiters for commands to shell are: newlines, tabs, and spaces */
 	mlcs.delims = " \n\t";
 	/** delims for path are colons and null bytes **/
