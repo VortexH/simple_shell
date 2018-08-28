@@ -15,7 +15,7 @@ int main(au int argc, char **argv, char **env)
 	size_t n = 0;
 	int check = 1;
 
-	mlcs.loop_count = 0;
+	mlcs.loop_count = 1;
 	mlcs.argv = argv;
 	mlcs.env = env;
 	/** delimiters for commands to shell are: newlines, tabs, and spaces */
