@@ -17,7 +17,7 @@ char **get_path_array(char **env, memstruct mlcs)
 	char **path_array;
 
 	path = _getenv(env);
-	mlcs.path_copy = strdup(path);
+	mlcs.path_copy = _strdup(path, 0);
 	mlcs.nTokens = pathNumToken(mlcs);
 	path_array = tokenizepath(mlcs);
 

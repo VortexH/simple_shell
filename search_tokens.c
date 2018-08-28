@@ -12,20 +12,17 @@
 char *search_tokens(memstruct mlcs)
 {
 	int i = 0;
-	char *tmp;
-	char *pathSlashed;
-	char *direc_copy;
+	char *tmp = NULL;
+	char *direc_copy = NULL;
+	int tokenLen = 0;
 
 	if (mlcs.tokenArray[0][0] == '/')
 		return (mlcs.tokenArray[0]);
 	while (mlcs.path_array[i])
 	{
-		printf("String Length: %lu\n", strlen(mlcs.path_array[i]));
-		direc_copy = strdup(mlcs.path_array[i]);
-		printf("String Len after dup: %lu\n", strlen(direc_copy));
-		pathSlashed = strcat(direc_copy, "/");
-		tmp = strcat(pathSlashed, mlcs.tokenArray[0]);
-
+		tokenLen = _strlen(mlcs.tokenArray[0]);
+		direc_copy = _strdup(mlcs.path_array[i], tokenLen);
+		tmp = _strcat(direc_copy, mlcs.tokenArray[0]);
 		if (!access(tmp, F_OK))
 		{
 			if (!access(tmp, R_OK | X_OK))
