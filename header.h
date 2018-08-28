@@ -24,6 +24,7 @@ typedef struct mallocs
 	char *pathDelims;
 	ssize_t getReturn;
 	int nTokens;
+	unsigned int loop_count;
 } memstruct;
 
 int numToken(memstruct mlcs);
