@@ -11,16 +11,17 @@
  * Return: Array of Paths
 */
 
-char **get_path_array(char **env, memstruct mlcs)
+char **get_path_array(memstruct mlcs)
 {
-	char *path;
-	char **path_array;
+	char *path = NULL;
+	char **path_array = NULL;
 
-	path = _getenv(env);
+	path = _getenv(mlcs);
 	mlcs.path_copy = _strdup(path, 0);
+	if (!mlcs.path_copy)
+		return (NULL);
 	mlcs.nTokens = pathNumToken(mlcs);
 	path_array = tokenizepath(mlcs);
-
 
 	return (path_array);
 }

@@ -22,12 +22,14 @@ char *search_tokens(memstruct mlcs)
 	{
 		tokenLen = _strlen(mlcs.tokenArray[0]);
 		direc_copy = _strdup(mlcs.path_array[i], tokenLen);
+		if (!direc_copy)
+			return (NULL);
 		tmp = _strcat(direc_copy, mlcs.tokenArray[0]);
 		if (!access(tmp, F_OK))
 		{
 			if (!access(tmp, R_OK | X_OK))
 				return (tmp);
-			exit(EXIT_FAILURE);
+			custom_exit(mlcs);
 		}
 		i++;
 		free(direc_copy);

@@ -15,6 +15,8 @@ typedef struct mallocs
 {
 	char **path_array;
 	char **tokenArray;
+	char **argv;
+	char **env;
 	char *buffer;
 	char *path_copy;
 	char *direc_copy;
@@ -26,20 +28,21 @@ typedef struct mallocs
 
 int numToken(memstruct mlcs);
 int pathNumToken(memstruct mlcs);
-char **tokenize(char **env, memstruct mlcs);
+char **tokenize(memstruct mlcs);
 char **tokenizepath(memstruct mlcs);
-int execute_command(char **argv, memstruct mlcs);
-char *_getenv(char **env);
-char **get_path_array(char **env, memstruct mlcs);
+int execute_command(memstruct mlcs);
+char *_getenv(memstruct mlcs);
+char **get_path_array(memstruct mlcs);
 char *search_tokens(memstruct mlcs);
+void custom_exit(memstruct mlcs);
 
-
-void printenv(char **env);
+void printenv(memstruct mlcs);
 char *_strpbrk(char *s, char *accept);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 unsigned int _strspn(char *s, char *accept);
 char *_strdup(char *str, int n);
+
 
 #endif

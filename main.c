@@ -15,13 +15,21 @@ int main(au int argc, char **argv, char **env)
 	size_t n = 0;
 	int check = 1;
 
+	mlcs.argv = argv;
+	mlcs.env = env;
 	/** delimiters for commands to shell are: newlines, tabs, and spaces */
 	mlcs.delims = " \n\t";
 	/** delims for path are colons and null bytes **/
 	mlcs.pathDelims = ":\0";
 	/** call once to generate array of directories from path **/
-	mlcs.path_array = get_path_array(env, mlcs);
-
+	mlcs.path_array = get_path_array(mlcs);
+	if (!mlcs.path_array)
+	{
+		write(1, mlcs.argv[0], _strlen(mlcs.argv[0]));
+		write(1, ": ", 2);
+		perror("");
+		exit(EXIT_FAILURE);
+	}
 	while (check)
 	{
 		write(1, ">>>> ", 5);
@@ -34,10 +42,14 @@ int main(au int argc, char **argv, char **env)
 		mlcs.nTokens = numToken(mlcs);
 		if (mlcs.nTokens)
 		{
-			mlcs.tokenArray = tokenize(env, mlcs);
+			mlcs.tokenArray = tokenize(mlcs);
 			if (!mlcs.tokenArray)
+			{
+				free(mlcs.buffer);
+				free(mlcs.path_array);
 				return (-1);
-			execute_command(argv, mlcs);
+			}
+			execute_command(mlcs);
 			free(mlcs.tokenArray);
 			mlcs.tokenArray = NULL;
 		}

@@ -8,22 +8,21 @@
  * Return: 0 For success
  */
 
-int execute_command(char **argv, memstruct mlcs)
+int execute_command(memstruct mlcs)
 {
 	pid_t pid;
 	int status;
 
 
 	mlcs.tokenArray[0] = search_tokens(mlcs);
-
+	if (!mlcs.tokenArray[0])
+		custom_exit(mlcs);
 	pid = fork();
 	if (pid == 0)
 	{
 		if ((execve(mlcs.tokenArray[0], mlcs.tokenArray, NULL)) == -1)
 		{
-			write(1, argv[0], _strlen(argv[0]));
-			perror(" ");
-			exit(EXIT_FAILURE);
+			custom_exit(mlcs);
 		}
 
 	}

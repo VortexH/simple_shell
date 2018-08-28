@@ -13,7 +13,7 @@
  *
  * Return: The array of tokens
 */
-char **tokenize(char **env, memstruct mlcs)
+char **tokenize(memstruct mlcs)
 {
 	int i;
 	char *token;
@@ -26,9 +26,9 @@ char **tokenize(char **env, memstruct mlcs)
 	token = strtok(mlcs.buffer, mlcs.delims);
 
 	if (!_strcmp("exit", token))
-		exit(EXIT_FAILURE);
+		custom_exit(mlcs);
 	if (!_strcmp("env", token))
-		printenv(env);
+		printenv(mlcs);
 
 	for (i = 0; token != NULL; i++)
 	{
