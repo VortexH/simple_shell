@@ -14,23 +14,21 @@ int main(au int argc, char **argv, char **env)
 	memstruct mlcs;
 	size_t n = 0;
 	int check = 1;
-	char *buffer = NULL;
-	ssize_t getReturn;
 
+	/** delimiters for commands to shell are: newlines, tabs, and spaces */
 	mlcs.delims = " \n\t";
-/**	mlcs.path_array = get_path_array(env, mlcs);
- */
+	/** delims for path are colons and null bytes **/
+	mlcs.pathDelims = ":\0";
+	/** call once to generate array of directories from path **/
+	mlcs.path_array = get_path_array(env, mlcs);
+
 	while (check)
 	{
 		write(1, ">>>> ", 5);
 
-		getReturn = getline(&buffer, &n, stdin);
+		mlcs.getReturn = getline(&mlcs.buffer, &n , stdin);
 
-		printf("Hello");
-
-		mlcs.buffer = buffer;
-
-		if (getReturn == -1)
+		if (mlcs.getReturn == -1)
 			return (-1);
 
 		mlcs.nTokens = numToken(mlcs);
@@ -40,7 +38,11 @@ int main(au int argc, char **argv, char **env)
 			if (!mlcs.tokenArray)
 				return (-1);
 			execute_command(argv, mlcs);
+			free(mlcs.tokenArray);
+			mlcs.tokenArray = NULL;
 		}
+		free(mlcs.buffer);
+		mlcs.buffer = NULL;
 
 	}
 	return (0);

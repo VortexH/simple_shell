@@ -21,8 +21,6 @@ int numToken(memstruct mlcs)
 		mlcs.buffer = _strpbrk(mlcs.buffer, mlcs.delims);
 		if (mlcs.buffer)
 			n++;
-		else
-		  n++;
 	}
 
 	return (n);

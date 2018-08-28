@@ -18,7 +18,7 @@ char *_getenv(char **env)
 		for (j = 0; env[i][j] == name[j]; j++)
 			if (env[i][j + 1] == '=' && name[j + 1] == 0)
 			{
-				t = env[i] + j + 1;
+				t = env[i] + j + 2;
 				return (t);
 			}
 

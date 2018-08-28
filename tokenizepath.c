@@ -13,30 +13,24 @@
  *
  * Return: The array of tokens
 */
-char **tokenize(char **env, memstruct mlcs)
+char **tokenizepath(memstruct mlcs)
 {
 	int i;
 	char *token;
 
 	/** allocate blocks for tokens and NULL pointer **/
-	mlcs.tokenArray = malloc(sizeof(char *) * (mlcs.nTokens + 1));
-	if (!mlcs.tokenArray)
+	mlcs.path_array = malloc(sizeof(char *) * (mlcs.nTokens + 1));
+	if (!mlcs.path_array)
 		return (NULL);
 
-	token = strtok(mlcs.buffer, mlcs.delims);
-
-	if (!_strcmp("exit", token))
-		exit(EXIT_FAILURE);
-	if (!_strcmp("env", token))
-		printenv(env);
-
+	token = strtok(mlcs.path_copy, ":\0");
 	for (i = 0; token != NULL; i++)
 	{
-		mlcs.tokenArray[i] = token;
-		token = strtok(NULL, mlcs.delims);
+		mlcs.path_array[i] = token;
+		token = strtok(NULL, ":\0");
 	}
-	mlcs.tokenArray[i] = NULL;
+	mlcs.path_array[i] = NULL;
 
-	return (mlcs.tokenArray);
+	return (mlcs.path_array);
 
 }

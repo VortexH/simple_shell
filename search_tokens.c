@@ -20,7 +20,9 @@ char *search_tokens(memstruct mlcs)
 		return (mlcs.tokenArray[0]);
 	while (mlcs.path_array[i])
 	{
+		printf("String Length: %lu\n", strlen(mlcs.path_array[i]));
 		direc_copy = strdup(mlcs.path_array[i]);
+		printf("String Len after dup: %lu\n", strlen(direc_copy));
 		pathSlashed = strcat(direc_copy, "/");
 		tmp = strcat(pathSlashed, mlcs.tokenArray[0]);
 
@@ -31,6 +33,8 @@ char *search_tokens(memstruct mlcs)
 			exit(EXIT_FAILURE);
 		}
 		i++;
+		free(direc_copy);
+		direc_copy = NULL;
 	}
 
 	return (mlcs.tokenArray[0]);

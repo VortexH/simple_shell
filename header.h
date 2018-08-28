@@ -19,12 +19,15 @@ typedef struct mallocs
 	char *path_copy;
 	char *direc_copy;
 	char *delims;
+	char *pathDelims;
 	ssize_t getReturn;
 	int nTokens;
 } memstruct;
 
 int numToken(memstruct mlcs);
+int pathNumToken(memstruct mlcs);
 char **tokenize(char **env, memstruct mlcs);
+char **tokenizepath(memstruct mlcs);
 int execute_command(char **argv, memstruct mlcs);
 char *_getenv(char **env);
 char **get_path_array(char **env, memstruct mlcs);
