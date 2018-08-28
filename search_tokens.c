@@ -9,20 +9,20 @@
  * Return: The token, either concatenated with the command or directly the path
  */
 
-char *search_tokens(char **path_array, char *token)
+char *search_tokens(memstruct mlcs)
 {
 	int i = 0;
 	char *tmp;
 	char *pathSlashed;
 	char *direc_copy;
 
-	if (token[0] == '/')
-		return (token);
-	while (path_array[i])
+	if (mlcs.tokenArray[0][0] == '/')
+		return (mlcs.tokenArray[0]);
+	while (mlcs.path_array[i])
 	{
-		direc_copy = strdup(path_array[i]);
+		direc_copy = strdup(mlcs.path_array[i]);
 		pathSlashed = strcat(direc_copy, "/");
-		tmp = strcat(pathSlashed, token);
+		tmp = strcat(pathSlashed, mlcs.tokenArray[0]);
 
 		if (!access(tmp, F_OK))
 		{
@@ -33,5 +33,5 @@ char *search_tokens(char **path_array, char *token)
 		i++;
 	}
 
-	return (token);
+	return (mlcs.tokenArray[0]);
 }

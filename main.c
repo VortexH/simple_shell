@@ -11,30 +11,35 @@
 
 int main(au int argc, char **argv, char **env)
 {
-	char *buffer = NULL;
-	char *delims = " \t\n";
-	char **token_array, **path_array;
+	memstruct mlcs;
 	size_t n = 0;
+	int check = 1;
+	char *buffer = NULL;
 	ssize_t getReturn;
-	int nTokens, check = 1;
 
-	path_array = get_path_array(env);
-
+	mlcs.delims = " \n\t";
+/**	mlcs.path_array = get_path_array(env, mlcs);
+ */
 	while (check)
 	{
 		write(1, ">>>> ", 5);
 
 		getReturn = getline(&buffer, &n, stdin);
+
+		printf("Hello");
+
+		mlcs.buffer = buffer;
+
 		if (getReturn == -1)
 			return (-1);
 
-		nTokens = numToken(buffer, delims);
-		if (nTokens)
+		mlcs.nTokens = numToken(mlcs);
+		if (mlcs.nTokens)
 		{
-			token_array = tokenize(buffer, nTokens, delims, env);
-			if (!token_array)
+			mlcs.tokenArray = tokenize(env, mlcs);
+			if (!mlcs.tokenArray)
 				return (-1);
-			execute_command(token_array, argv, path_array);
+			execute_command(argv, mlcs);
 		}
 
 	}

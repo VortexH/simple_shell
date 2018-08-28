@@ -9,17 +9,17 @@
  * Return: Number of tokens.
  */
 
-int numToken(char *b, char *d)
+int numToken(memstruct mlcs)
 {
 	int len, n;
 
 	n = 0;
-	while (b)
+	while (mlcs.buffer)
 	{
-		len = _strspn(b, d);
-		b += len;
-		b = _strpbrk(b, d);
-		if (b)
+		len = _strspn(mlcs.buffer, mlcs.delims);
+		mlcs.buffer += len;
+		mlcs.buffer = _strpbrk(mlcs.buffer, mlcs.delims);
+		if (mlcs.buffer)
 			n++;
 		else
 		  n++;
