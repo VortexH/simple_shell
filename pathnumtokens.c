@@ -24,7 +24,7 @@ int pathNumToken(memstruct mlcs)
 		else
 		  n++;
 	}
-	free (mlcs.path_copy);
+
 
 	return (n);
 

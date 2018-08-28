@@ -13,7 +13,6 @@ char *search_tokens(memstruct mlcs)
 {
 	int i = 0;
 	char *tmp = NULL;
-	char *direc_copy = NULL;
 	int tokenLen = 0;
 
 	if (mlcs.tokenArray[0][0] == '/')
@@ -21,10 +20,10 @@ char *search_tokens(memstruct mlcs)
 	while (mlcs.path_array[i])
 	{
 		tokenLen = _strlen(mlcs.tokenArray[0]);
-		direc_copy = _strdup(mlcs.path_array[i], tokenLen);
-		if (!direc_copy)
+		mlcs.direc_copy = _strdup(mlcs.path_array[i], tokenLen);
+		if (!mlcs.direc_copy)
 			return (NULL);
-		tmp = _strcat(direc_copy, mlcs.tokenArray[0]);
+		tmp = _strcat(mlcs.direc_copy, mlcs.tokenArray[0]);
 		if (!access(tmp, F_OK))
 		{
 			if (!access(tmp, R_OK | X_OK))
@@ -32,8 +31,8 @@ char *search_tokens(memstruct mlcs)
 			custom_exit(mlcs);
 		}
 		i++;
-		free(direc_copy);
-		direc_copy = NULL;
+		free(mlcs.direc_copy);
+		mlcs.direc_copy = NULL;
 	}
 
 	return (mlcs.tokenArray[0]);

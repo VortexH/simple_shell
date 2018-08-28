@@ -22,6 +22,7 @@ char **get_path_array(memstruct mlcs)
 		return (NULL);
 	mlcs.nTokens = pathNumToken(mlcs);
 	path_array = tokenizepath(mlcs);
+	free (mlcs.path_copy);
 
 	return (path_array);
 }
