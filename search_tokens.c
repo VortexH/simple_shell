@@ -28,7 +28,7 @@ char *search_tokens(memstruct *mlcs)
 			return (NULL);
 		for (j = 0; mlcs->path_array[i][j]; j++)
 		{
-			tmp[j] = mlcs->path_array[i][j];
+			tmp[j] = (mlcs->path_array[i])[j];
 		}
 		tmp[j] = '/';
 		for (k = 0, j += 1; mlcs->tokenArray[0][k]; j++, k++)
@@ -42,7 +42,7 @@ char *search_tokens(memstruct *mlcs)
 				return (mlcs->direc_copy);
 			custom_exit(mlcs);
 		}
-		free(tmp);
+		free(mlcs->direc_copy);
 		mlcs->direc_copy = NULL;
 	}
 

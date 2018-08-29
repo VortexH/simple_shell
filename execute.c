@@ -15,6 +15,7 @@ int execute_command(memstruct *mlcs)
 
 
 	mlcs->tokenArray[0] = search_tokens(mlcs);
+	free(mlcs->direc_copy);
 	if (!mlcs->tokenArray[0])
 		custom_exit(mlcs);
 	pid = fork();

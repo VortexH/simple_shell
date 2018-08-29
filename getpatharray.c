@@ -19,7 +19,5 @@ void get_path_array(memstruct *mlcs)
 	mlcs->path_copy = strdup(path);
 	mlcs->nTokens = pathNumToken(mlcs);
 	mlcs->path_array = tokenizepath(mlcs);
-	free(mlcs->path_copy);
-	mlcs->path_copy = NULL;
 
 }

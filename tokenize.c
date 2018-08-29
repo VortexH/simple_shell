@@ -32,6 +32,7 @@ char **tokenize(memstruct *mlcs)
 		free(mlcs->tokenArray);
 		free(mlcs->path_array);
 		free(mlcs->buffer);
+		free(tmparr);
 		exit(EXIT_FAILURE);
 	}
 	if (!_strcmp("env", token))
