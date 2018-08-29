@@ -16,6 +16,7 @@
  * struct mallocs - Struct of all function variables that cross functions
  * @path_array: Array of pointers to path string values
  * @tokenArray: Array of pointers to values passed in through getline
+ * @tmparr: Array to store token array
  * @argv: Arguments passed in on the command line
  * @env: Environment variable
  * @buffer: Values stored from getline
@@ -23,6 +24,7 @@
  * @direc_copy: Copy of individual directory string to not alter original
  * @delims: Delimiters for strtok
  * @pathDelims: Delimiters for strtok specifically for path string
+ * @input_token: First token to print if error in path
  * @getReturn: Return value of getline to check for failure
  * @nTokens: Number of tokens returned from numTokens
  * @loop_count: Count of main loop instances
