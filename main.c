@@ -11,32 +11,53 @@
 
 int main(au int argc, char **argv, char **env)
 {
-	char *buffer = NULL;
-	char *delims = " \t\n";
-	char **token_array, **path_array;
+	memstruct mlcs;
 	size_t n = 0;
-	ssize_t getReturn;
-	int nTokens, check = 1;
+	int check = 1;
 
-	path_array = get_path_array(env);
-
+	mlcs.loop_count = 1;
+	mlcs.argv = argv;
+	mlcs.env = env;
+	mlcs.buffer = NULL;
+	/** delimiters for commands to shell are: newlines, tabs, and spaces */
+	mlcs.delims = " \n\t";
+	/** delims for path are colons and null bytes **/
+	mlcs.pathDelims = ":\0";
+	/** call once to generate array of directories from path **/
+	mlcs.path_array = get_path_array(mlcs);
+	if (!mlcs.path_array)
+	{
+		write(1, mlcs.argv[0], _strlen(mlcs.argv[0]));
+		write(1, ": ", 2);
+		perror("");
+		exit(EXIT_FAILURE);
+	}
 	while (check)
 	{
 		write(1, ">>>> ", 5);
 
-		getReturn = getline(&buffer, &n, stdin);
-		if (getReturn == -1)
+		mlcs.getReturn = getline(&mlcs.buffer, &n , stdin);
+
+		if (mlcs.getReturn == -1)
 			return (-1);
 
-		nTokens = numToken(buffer, delims);
-		if (nTokens)
+		mlcs.nTokens = numToken(mlcs);
+		if (mlcs.nTokens)
 		{
-			token_array = tokenize(buffer, nTokens, delims, env);
-			if (!token_array)
+			mlcs.tokenArray = tokenize(mlcs);
+			if (!mlcs.tokenArray)
+			{
+				free(mlcs.buffer);
+				free(mlcs.path_array);
 				return (-1);
-			execute_command(token_array, argv, path_array);
+			}
+			execute_command(mlcs);
+			free(mlcs.tokenArray);
+			mlcs.tokenArray = NULL;
 		}
-
+		free(mlcs.buffer);
+		mlcs.buffer = NULL;
+		mlcs.loop_count++;
 	}
 	return (0);
 }

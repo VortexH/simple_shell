@@ -11,17 +11,39 @@
 
 #define au __attribute__((unused))
 
-int numToken(char *bf, char *d);
-char **tokenize(char *buffer, int nTokens, char *delims, char **env);
-int execute_command(char **token_array, char **argv, char **path_array);
-unsigned int _strspn(char *s, char *accept);
+typedef struct mallocs
+{
+	char **path_array;
+	char **tokenArray;
+	char **argv;
+	char **env;
+	char *buffer;
+	char *path_copy;
+	char *direc_copy;
+	char *delims;
+	char *pathDelims;
+	ssize_t getReturn;
+	int nTokens;
+	unsigned int loop_count;
+} memstruct;
+
+int numToken(memstruct mlcs);
+int pathNumToken(memstruct mlcs);
+char **tokenize(memstruct mlcs);
+char **tokenizepath(memstruct mlcs);
+int execute_command(memstruct mlcs);
+char *_getenv(memstruct mlcs);
+char **get_path_array(memstruct mlcs);
+char *search_tokens(memstruct mlcs);
+void custom_exit(memstruct mlcs);
+
+void printenv(memstruct mlcs);
 char *_strpbrk(char *s, char *accept);
 int _strlen(char *s);
-char *_getenv(char **env);
-char **get_path_array(char **env);
-char *search_tokens(char **path_array, char *token);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
-void printenv(char **env);
+unsigned int _strspn(char *s, char *accept);
+char *_strdup(char *str, int n);
+
 
 #endif

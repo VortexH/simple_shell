@@ -8,15 +8,13 @@
  * Return: void
 */
 
-void printenv(char **env)
+void printenv(memstruct mlcs)
 {
 	int i;
 
-	for (i = 0; env[i]; i++)
+	for (i = 0; mlcs.env[i]; i++)
 	{
-		write (1, env[i], _strlen(env[i]));
-		write (1, "\n", 1);
+		write(1, mlcs.env[i], _strlen(mlcs.env[i]));
+		write(1, "\n", 1);
 	}
 }
-	
-	

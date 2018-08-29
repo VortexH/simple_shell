@@ -11,20 +11,18 @@
  * Return: Array of Paths
 */
 
-char **get_path_array(char **env)
+char **get_path_array(memstruct mlcs)
 {
-	char *path;
-	int nTokens;
-	char **path_array;
-	char *copy;
+	char *path = NULL;
+	char **path_array = NULL;
 
-
-	path = _getenv(env);
-	copy = strdup(path);
-	nTokens = numToken(copy, ":\0");
-	path_array = tokenize(copy, nTokens, ":\0", env);
-
-
+	path = _getenv(mlcs);
+	mlcs.path_copy = _strdup(path, 0);
+	if (!mlcs.path_copy)
+		return (NULL);
+	mlcs.nTokens = pathNumToken(mlcs);
+	path_array = tokenizepath(mlcs);
+	free (mlcs.path_copy);
 
 	return (path_array);
 }
