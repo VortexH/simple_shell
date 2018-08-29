@@ -26,6 +26,7 @@ int main(au int argc, char **argv, char **env)
 	mlcs->buffer = NULL;
 	mlcs->path_copy = NULL;
 	mlcs->direc_copy = NULL;
+	mlcs->input_token = NULL;
 	mlcs->delims = " \n\t";
 	mlcs->pathDelims = ":\0";
 	mlcs->getReturn = 0;
@@ -43,7 +44,22 @@ int main(au int argc, char **argv, char **env)
 
 		mlcs->getReturn = getline(&mlcs->buffer, &n, stdin);
 		if (mlcs->getReturn == -1)
-			custom_exit(mlcs);
+		{
+			if (mlcs->path_array)
+				free(mlcs->path_array);
+			if (mlcs->tokenArray)
+				free(mlcs->tokenArray);
+			if (mlcs->buffer)
+				free(mlcs->buffer);
+			if (mlcs->direc_copy)
+				free(mlcs->direc_copy);
+			if (mlcs->path_copy)
+				free(mlcs->path_copy);
+			free(mlcs);
+			write(1, "\n", 1);
+			exit(EXIT_FAILURE);
+
+		}
 
 		mlcs->nTokens = numToken(mlcs);
 		if (mlcs->nTokens)

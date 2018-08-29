@@ -42,6 +42,7 @@ typedef struct mallocs
 	char *direc_copy;
 	char *delims;
 	char *pathDelims;
+	char *input_token;
 	ssize_t getReturn;
 	int nTokens;
 	unsigned int loop_count;

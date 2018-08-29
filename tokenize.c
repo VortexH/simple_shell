@@ -25,7 +25,23 @@ char **tokenize(memstruct *mlcs)
 	token = strtok(mlcs->buffer, mlcs->delims);
 
 	if (!_strcmp("exit", token) && mlcs->nTokens == 1)
-		custom_exit(mlcs);
+	{
+		if (mlcs->path_array)
+			free(mlcs->path_array);
+		if (mlcs->tokenArray)
+			free(mlcs->tokenArray);
+		if (mlcs->buffer)
+			free(mlcs->buffer);
+		if (mlcs->direc_copy)
+			free(mlcs->direc_copy);
+		if (mlcs->path_copy)
+			free(mlcs->path_copy);
+		if (mlcs->tmparr)
+			free(mlcs->tmparr);
+		free(mlcs);
+		exit(EXIT_FAILURE);
+	}
+
 	if (!_strcmp("env", token) && mlcs->nTokens == 1)
 		printenv(mlcs);
 

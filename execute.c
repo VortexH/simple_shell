@@ -11,7 +11,7 @@ int execute_command(memstruct *mlcs)
 	pid_t pid;
 	int status;
 
-
+	mlcs->input_token = _strdup(mlcs->tokenArray[0]);
 	mlcs->tokenArray[0] = search_tokens(mlcs);
 	if (!mlcs->tokenArray[0])
 		custom_exit(mlcs);
@@ -29,6 +29,8 @@ int execute_command(memstruct *mlcs)
 		wait(&status);
 	}
 
+	free(mlcs->input_token);
+	mlcs->input_token = NULL;
 	free(mlcs->direc_copy);
 	mlcs->direc_copy = NULL;
 	return (0);

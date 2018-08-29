@@ -21,8 +21,6 @@ void custom_exit(memstruct *mlcs)
 		free(mlcs->direc_copy);
 	if (mlcs->path_copy)
 		free(mlcs->path_copy);
-	if (mlcs->tmparr)
-		free(mlcs->tmparr);
 
 	write(1, mlcs->argv[0], _strlen(mlcs->argv[0]));
 	write(1, ": ", 2);
@@ -37,6 +35,10 @@ void custom_exit(memstruct *mlcs)
 		div = div / 10;
 		temp = 0;
 	}
+	write(1, ": ", 2);
+	write(1, mlcs->input_token, _strlen(mlcs->input_token));
+	free(mlcs->input_token);
+	mlcs->input_token = NULL;
 	write(1, ": ", 2);
 	perror("");
 
