@@ -9,28 +9,30 @@
  * @env: environment variable
  *
  * Description: calls strtok to get token and stores it in a generic array of
- * tokens.
+ * tokens->
  *
  * Return: The array of tokens
 */
-char **tokenizepath(memstruct mlcs)
+char **tokenizepath(memstruct *mlcs)
 {
 	int i;
 	char *token;
+	char **tmp;
 
 	/** allocate blocks for tokens and NULL pointer **/
-	mlcs.path_array = malloc(sizeof(char *) * (mlcs.nTokens + 1));
-	if (!mlcs.path_array)
+	tmp = malloc(sizeof(char *) * (mlcs->nTokens + 1));
+	if (!tmp)
 		return (NULL);
 
-	token = strtok(mlcs.path_copy, ":\0");
+	token = strtok(mlcs->path_copy, mlcs->pathDelims);
 	for (i = 0; token != NULL; i++)
 	{
-		mlcs.path_array[i] = token;
-		token = strtok(NULL, ":\0");
+		printf("tokenizepath:path token: %s\n", token);
+		tmp[i] = token;
+		token = strtok(NULL, mlcs->pathDelims);
 	}
-	mlcs.path_array[i] = NULL;
+	tmp[i] = NULL;
 
-	return (mlcs.path_array);
+	return (tmp);
 
 }

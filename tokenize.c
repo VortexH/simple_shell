@@ -9,27 +9,29 @@
  * @env: environment variable
  *
  * Description: calls strtok to get token and stores it in a generic array of
- * tokens.
+ * tokens->
  *
  * Return: The array of tokens
 */
-char **tokenize(memstruct mlcs)
+char **tokenize(memstruct *mlcs)
 {
 	int i;
 	char *token;
+	char **tmparr;
 
 	/** allocate blocks for tokens and NULL pointer **/
-	mlcs.tokenArray = malloc(sizeof(char *) * (mlcs.nTokens + 1));
-	if (!mlcs.tokenArray)
+	tmparr = malloc(sizeof(char *) * (mlcs->nTokens + 1));
+
+	if (!tmparr)
 		return (NULL);
 
-	token = strtok(mlcs.buffer, mlcs.delims);
+	token = strtok(mlcs->buffer, mlcs->delims);
 
 	if (!_strcmp("exit", token))
 	{
-		free(mlcs.tokenArray);
-		free(mlcs.path_array);
-		free(mlcs.buffer);
+		free(mlcs->tokenArray);
+		free(mlcs->path_array);
+		free(mlcs->buffer);
 		exit(EXIT_FAILURE);
 	}
 	if (!_strcmp("env", token))
@@ -37,11 +39,12 @@ char **tokenize(memstruct mlcs)
 
 	for (i = 0; token != NULL; i++)
 	{
-		mlcs.tokenArray[i] = token;
-		token = strtok(NULL, mlcs.delims);
+		printf("Cmd token: %s\n", token);
+		tmparr[i] = token;
+		token = strtok(NULL, mlcs->delims);
 	}
-	mlcs.tokenArray[i] = NULL;
+	tmparr[i] = NULL;
 
-	return (mlcs.tokenArray);
+	return (tmparr);
 
 }

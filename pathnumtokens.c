@@ -9,17 +9,19 @@
  * Return: Number of tokens.
  */
 
-int pathNumToken(memstruct mlcs)
+int pathNumToken(memstruct *mlcs)
 {
 	int len, n;
+	char *tmp;
 
 	n = 0;
-	while (mlcs.path_copy)
+	tmp = mlcs->path_copy;
+	while (tmp)
 	{
-		len = _strspn(mlcs.path_copy, mlcs.pathDelims);
-		mlcs.path_copy += len;
-		mlcs.path_copy = _strpbrk(mlcs.path_copy, mlcs.pathDelims);
-		if (mlcs.path_copy)
+		len = _strspn(tmp, mlcs->pathDelims);
+		tmp += len;
+		tmp = _strpbrk(tmp, mlcs->pathDelims);
+		if (tmp)
 			n++;
 		else
 		  n++;

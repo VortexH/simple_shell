@@ -27,17 +27,17 @@ typedef struct mallocs
 	unsigned int loop_count;
 } memstruct;
 
-int numToken(memstruct mlcs);
-int pathNumToken(memstruct mlcs);
-char **tokenize(memstruct mlcs);
-char **tokenizepath(memstruct mlcs);
-int execute_command(memstruct mlcs);
-char *_getenv(memstruct mlcs);
-char **get_path_array(memstruct mlcs);
-char *search_tokens(memstruct mlcs);
-void custom_exit(memstruct mlcs);
+int numToken(memstruct *mlcs);
+int pathNumToken(memstruct *mlcs);
+char **tokenize(memstruct *mlcs);
+char **tokenizepath(memstruct *mlcs);
+int execute_command(memstruct *mlcs);
+char *_getenv(memstruct *mlcs);
+void get_path_array(memstruct *mlcs);
+char *search_tokens(memstruct *mlcs);
+void custom_exit(memstruct *mlcs);
 
-void printenv(memstruct mlcs);
+void printenv(memstruct *mlcs);
 char *_strpbrk(char *s, char *accept);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);

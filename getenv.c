@@ -7,18 +7,18 @@
  * Return: The path string
  */
 
-char *_getenv(memstruct mlcs)
+char *_getenv(memstruct *mlcs)
 {
 	int i, j;
 	char *name = "PATH";
 	char *t;
 
-	for (i = 0; mlcs.env[i]; i++)
+	for (i = 0; mlcs->env[i]; i++)
 	{
-		for (j = 0; mlcs.env[i][j] == name[j]; j++)
-			if (mlcs.env[i][j + 1] == '=' && name[j + 1] == 0)
+		for (j = 0; mlcs->env[i][j] == name[j]; j++)
+			if (mlcs->env[i][j + 1] == '=' && name[j + 1] == 0)
 			{
-				t = mlcs.env[i] + j + 2;
+				t = mlcs->env[i] + j + 2;
 				return (t);
 			}
 

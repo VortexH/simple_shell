@@ -9,31 +9,45 @@
  * Return: The token, either concatenated with the command or directly the path
  */
 
-char *search_tokens(memstruct mlcs)
+char *search_tokens(memstruct *mlcs)
 {
-	int i = 0;
 	char *tmp = NULL;
-	int tokenLen = 0;
+	int dirlen, tokenLen, i, j, k;
 
-	if (mlcs.tokenArray[0][0] == '/')
-		return (mlcs.tokenArray[0]);
-	while (mlcs.path_array[i])
+
+	if (mlcs->tokenArray[0][0] == '/')
+		return (mlcs->tokenArray[0]);
+	for (i = 0; mlcs->path_array[i]; i++)
 	{
-		tokenLen = _strlen(mlcs.tokenArray[0]);
-		mlcs.direc_copy = _strdup(mlcs.path_array[i], tokenLen);
-		if (!mlcs.direc_copy)
+		printf("mlcs->path_array[%d]: %s\n",i, mlcs->path_array[i]);
+		tokenLen = _strlen(mlcs->tokenArray[0]);
+		dirlen = _strlen(mlcs->path_array[i]);
+		printf("Token Length: %d, Directory Len: %d\n", tokenLen, dirlen);
+
+/** put bytes into tmp array --------------------------------------**/
+		tmp = malloc(sizeof(char) * (tokenLen + dirlen + 2));
+		if (!tmp)
 			return (NULL);
-		tmp = _strcat(mlcs.direc_copy, mlcs.tokenArray[0]);
-		if (!access(tmp, F_OK))
+		for (j = 0; mlcs->path_array[i][j]; j++)
 		{
-			if (!access(tmp, R_OK | X_OK))
-				return (tmp);
+			tmp[j] = mlcs->path_array[i][j];
+		}
+		tmp[j] = '/';
+		for (k = 0, j += 1; mlcs->tokenArray[0][k]; j++, k++)
+			tmp[j] = mlcs->tokenArray[0][k];
+		tmp[j] = '\0';
+		printf("tmp string: %s\n", tmp);
+		mlcs->direc_copy = tmp;
+/**--------------------------------------------------------------------**/
+		if (!access(mlcs->direc_copy, F_OK))
+		{
+			if (!access(mlcs->direc_copy, R_OK | X_OK))
+				return (mlcs->direc_copy);
 			custom_exit(mlcs);
 		}
-		i++;
-		free(mlcs.direc_copy);
-		mlcs.direc_copy = NULL;
+		free(tmp);
+		mlcs->direc_copy = NULL;
 	}
 
-	return (mlcs.tokenArray[0]);
+	return (mlcs->tokenArray[0]);
 }

@@ -11,23 +11,23 @@
 
 int main(au int argc, char **argv, char **env)
 {
-	memstruct mlcs;
+	memstruct vars = {NULL};
+	memstruct *mlcs = &vars;
 	size_t n = 0;
 	int check = 1;
+	int h;
 
-	mlcs.loop_count = 1;
-	mlcs.argv = argv;
-	mlcs.env = env;
-	mlcs.buffer = NULL;
-	/** delimiters for commands to shell are: newlines, tabs, and spaces */
-	mlcs.delims = " \n\t";
-	/** delims for path are colons and null bytes **/
-	mlcs.pathDelims = ":\0";
-	/** call once to generate array of directories from path **/
-	mlcs.path_array = get_path_array(mlcs);
-	if (!mlcs.path_array)
+	mlcs->argv = argv;
+	mlcs->env = env;
+	mlcs->delims = " \n\t";
+	mlcs->pathDelims = ":\0";
+	get_path_array(mlcs);
+	printf("Are the directory tokens being added Properly?\n");
+	for (h = 0; mlcs->path_array[h]; h++)
+		printf("Directory in path: %s\n", mlcs->path_array[h]);
+	if (!mlcs->path_array)
 	{
-		write(1, mlcs.argv[0], _strlen(mlcs.argv[0]));
+		write(1, mlcs->argv[0], _strlen(mlcs->argv[0]));
 		write(1, ": ", 2);
 		perror("");
 		exit(EXIT_FAILURE);
@@ -36,28 +36,29 @@ int main(au int argc, char **argv, char **env)
 	{
 		write(1, ">>>> ", 5);
 
-		mlcs.getReturn = getline(&mlcs.buffer, &n , stdin);
-
-		if (mlcs.getReturn == -1)
+		mlcs->getReturn = getline(&mlcs->buffer, &n , stdin);
+		if (mlcs->getReturn == -1)
 			return (-1);
 
-		mlcs.nTokens = numToken(mlcs);
-		if (mlcs.nTokens)
+		mlcs->nTokens = numToken(mlcs);
+		if (mlcs->nTokens)
 		{
-			mlcs.tokenArray = tokenize(mlcs);
-			if (!mlcs.tokenArray)
+/*-------------------PROBLEMS---------------------------*/
+			mlcs->tokenArray = tokenize(mlcs);
+/*------------------------------------------------------*/
+		if (!mlcs->tokenArray)
 			{
-				free(mlcs.buffer);
-				free(mlcs.path_array);
+				free(mlcs->buffer);
+				free(mlcs->path_array);
 				return (-1);
 			}
 			execute_command(mlcs);
-			free(mlcs.tokenArray);
-			mlcs.tokenArray = NULL;
+			free(mlcs->tokenArray);
+			mlcs->tokenArray = NULL;
 		}
-		free(mlcs.buffer);
-		mlcs.buffer = NULL;
-		mlcs.loop_count++;
+		free(mlcs->buffer);
+		mlcs->buffer = NULL;
+		mlcs->loop_count++;
 	}
 	return (0);
 }

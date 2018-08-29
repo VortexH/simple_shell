@@ -17,6 +17,7 @@ char *_strdup(char *str, int n)
 	size = 0;
 	while (str[size] != '\0')
 		size++;
+	printf("Length of Directory: %d\n", size);
 	ar = malloc((size + 2 + n) * (sizeof(char)));
 	if (!ar)
 		return (NULL);
