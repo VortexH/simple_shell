@@ -22,7 +22,6 @@ char *search_tokens(memstruct *mlcs)
 
 /** put bytes into tmp array --------------------------------------**/
 		mlcs->direc_copy = malloc(sizeof(char) * (tokenLen + dirlen + 2));
-		printf("Mallocing %d bytes\n", tokenLen + dirlen + 1);
 		if (!mlcs->direc_copy)
 			return (NULL);
 		for (j = 0; mlcs->path_array[i][j]; j++)
