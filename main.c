@@ -38,6 +38,8 @@ int main(au int argc, char **argv, char **env)
 		mlcs->getReturn = getline(&mlcs->buffer, &n, stdin);
 		if (mlcs->getReturn == -1)
 		{
+			free(mlcs->path_copy);
+			free(mlcs->path_array);
 			free(mlcs->buffer);
 			return (-1);
 		}
@@ -45,9 +47,7 @@ int main(au int argc, char **argv, char **env)
 		mlcs->nTokens = numToken(mlcs);
 		if (mlcs->nTokens)
 		{
-/*-------------------PROBLEMS---------------------------*/
 			mlcs->tokenArray = tokenize(mlcs);
-/*------------------------------------------------------*/
 			if (!mlcs->tokenArray)
 			{
 				free(mlcs->buffer);
@@ -55,6 +55,7 @@ int main(au int argc, char **argv, char **env)
 				return (-1);
 			}
 			execute_command(mlcs);
+			free(mlcs->tokenArray[0]);
 			free(mlcs->tokenArray);
 			mlcs->tokenArray = NULL;
 		}
