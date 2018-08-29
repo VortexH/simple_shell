@@ -24,7 +24,7 @@ We recommend installing Vagrant on your machine and editing your VagrantFile to 
 	* git clone url\_of\_repository
 	* cd into the repository
 
-## Compiling source code
+## Compiling the source code
 * Compile with gcc and these flags:
 	* -Wall
 	* -Wextra
@@ -35,4 +35,6 @@ Example: gcc -Wall -Wextra -Werror -pedantic \*.c -o shell
 ## Running the program
 After compiling, you can run the executable by doing ./shell
 
+# Shell functionality
+The shell that you are running from this source has a few basic features. You can run any built-in command without specifying the absolute path of the file. By default, the shell will print >>>>> as the default prompt and waits for input from the user. You can specify the absolute path of a command or specify just the name of the executable (/bin/ls vs ls). `/bin/
 
