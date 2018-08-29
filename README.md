@@ -24,4 +24,15 @@ We recommend installing Vagrant on your machine and editing your VagrantFile to 
 	* git clone url\_of\_repository
 	* cd into the repository
 
+## Compiling source code
+* Compile with gcc and these flags:
+	* -Wall
+	* -Wextra
+	* -Werror
+	* -pedantic
+Example: gcc -Wall -Wextra -Werror -pedantic \*.c -o shell
+
+## Running the program
+After compiling, you can run the executable by doing ./shell
+
 
