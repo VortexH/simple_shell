@@ -39,7 +39,6 @@ char **tokenize(memstruct *mlcs)
 
 	for (i = 0; token != NULL; i++)
 	{
-		printf("Cmd token: %s\n", token);
 		tmparr[i] = token;
 		token = strtok(NULL, mlcs->delims);
 	}

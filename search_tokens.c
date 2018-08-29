@@ -19,10 +19,8 @@ char *search_tokens(memstruct *mlcs)
 		return (mlcs->tokenArray[0]);
 	for (i = 0; mlcs->path_array[i]; i++)
 	{
-		printf("mlcs->path_array[%d]: %s\n",i, mlcs->path_array[i]);
 		tokenLen = _strlen(mlcs->tokenArray[0]);
 		dirlen = _strlen(mlcs->path_array[i]);
-		printf("Token Length: %d, Directory Len: %d\n", tokenLen, dirlen);
 
 /** put bytes into tmp array --------------------------------------**/
 		tmp = malloc(sizeof(char) * (tokenLen + dirlen + 2));
@@ -36,7 +34,6 @@ char *search_tokens(memstruct *mlcs)
 		for (k = 0, j += 1; mlcs->tokenArray[0][k]; j++, k++)
 			tmp[j] = mlcs->tokenArray[0][k];
 		tmp[j] = '\0';
-		printf("tmp string: %s\n", tmp);
 		mlcs->direc_copy = tmp;
 /**--------------------------------------------------------------------**/
 		if (!access(mlcs->direc_copy, F_OK))

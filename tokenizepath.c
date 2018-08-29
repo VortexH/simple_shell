@@ -27,7 +27,6 @@ char **tokenizepath(memstruct *mlcs)
 	token = strtok(mlcs->path_copy, mlcs->pathDelims);
 	for (i = 0; token != NULL; i++)
 	{
-		printf("tokenizepath:path token: %s\n", token);
 		tmp[i] = token;
 		token = strtok(NULL, mlcs->pathDelims);
 	}
