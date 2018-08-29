@@ -11,9 +11,6 @@ void custom_exit(memstruct *mlcs)
 	int div = 1;
 	unsigned int temp = 0;
 
-/**
-	free(mlcs->tokenArray);
-**/
 	free(mlcs->path_array);
 	free(mlcs->buffer);
 	free(mlcs->direc_copy);
