@@ -21,7 +21,7 @@ int main(au int argc, char **argv, char **env)
 	mlcs->delims = " \n\t";
 	mlcs->pathDelims = ":\0";
 	get_path_array(mlcs);
-	free (mlcs->path_copy);
+	free(mlcs->path_copy);
 	mlcs->path_copy = NULL;
 
 	if (!mlcs->path_array)
@@ -35,7 +35,7 @@ int main(au int argc, char **argv, char **env)
 	{
 		write(1, ">>>> ", 5);
 
-		mlcs->getReturn = getline(&mlcs->buffer, &n , stdin);
+		mlcs->getReturn = getline(&mlcs->buffer, &n, stdin);
 		if (mlcs->getReturn == -1)
 		{
 			free(mlcs->buffer);
@@ -48,7 +48,7 @@ int main(au int argc, char **argv, char **env)
 /*-------------------PROBLEMS---------------------------*/
 			mlcs->tokenArray = tokenize(mlcs);
 /*------------------------------------------------------*/
-		if (!mlcs->tokenArray)
+			if (!mlcs->tokenArray)
 			{
 				free(mlcs->buffer);
 				free(mlcs->path_array);

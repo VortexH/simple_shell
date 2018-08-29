@@ -3,7 +3,7 @@
 /**
  * printenv - prints all the strings in environment to std out
  *
- * @env: environment
+ * @mlcs: Pointer to struct containing all variables
  *
  * Return: void
 */

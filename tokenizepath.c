@@ -1,12 +1,9 @@
 #include "header.h"
 
 /**
- * tokenize - returns an array of null terminated tokens
+ * tokenizepath - returns an array of null terminated tokens
  *
- * @buffer: contains the input from stdin
- * @nTokens: contains the number of tokens found in the buffer
- * @delims: a string of delimiters separating tokens
- * @env: environment variable
+ * @mlcs: Pointer to struct containing all variables
  *
  * Description: calls strtok to get token and stores it in a generic array of
  * tokens->

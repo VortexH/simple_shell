@@ -2,8 +2,7 @@
 
 /**
  * search_tokens - searching the path_array
- * @path_array: Array of strings found in path from env
- * @token: First token from input
+ * @mlcs: Pointer to struct containing all variables
  * Description: Searching our path array for the token, effectively searching
  * the path for a directory containing the command that was input
  * Return: The token, either concatenated with the command or directly the path

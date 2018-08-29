@@ -2,7 +2,7 @@
 
 /**
  * _getenv - our own get environment function
- * @env: Environment variable containing all env strings
+ * @mlcs: Pointer to struct containing all variables
  * Description: Gets specifically the path string from env
  * Return: The path string
  */

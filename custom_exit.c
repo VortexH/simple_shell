@@ -1,5 +1,11 @@
 #include "header.h"
 
+/**
+ * custom_exit - exit for specific cases that also prints error and loop number
+ * @mlcs: Pointer to struct containing all variables
+ * Return: Void
+ */
+
 void custom_exit(memstruct *mlcs)
 {
 	int div = 1;

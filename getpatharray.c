@@ -3,7 +3,7 @@
 /**
  * get_path_array - returns an array of directories from path
  *
- * @env: environment from parent process
+ * @mlcs: Pointer to struct containing all variables
  *
  * Description: gets the path, obtains tokens, and returns the entire path
  * as an array of directories.

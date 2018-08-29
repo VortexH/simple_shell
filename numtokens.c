@@ -2,8 +2,7 @@
 
 /**
  * numToken - gets the number of tokens in the string passed in
- * @b: Stored values of strings passed in
- * @d: String of delimiting characters being searched for
+ * @mlcs: Pointer to struct containing all variables
  * Description: Getting the number of delimiters to malloc an array of pointers
  * that each point to a single token of the passed in string->
  * Return: Number of tokens->

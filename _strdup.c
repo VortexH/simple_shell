@@ -3,6 +3,7 @@
 /**
  * _strdup - allocating memory for a string and copying that string
  * @str: Given string passed in
+ * @n: Number of extra bytes to malloc for string
  * Return: Pointer to new array
  */
 
