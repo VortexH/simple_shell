@@ -11,49 +11,38 @@
 
 int main(au int argc, char **argv, char **env)
 {
-	memstruct vars = {NULL};
-	memstruct *mlcs = &vars;
+	memstruct *mlcs = malloc(sizeof(memstruct));
 	size_t n = 0;
 	int check = 1;
+
+	if (!mlcs)
+		return (-1);
 
 	mlcs->argv = argv;
 	mlcs->env = env;
 	mlcs->delims = " \n\t";
 	mlcs->pathDelims = ":\0";
+	mlcs->loop_count = 1;
+
 	get_path_array(mlcs);
-	free(mlcs->path_copy);
-	mlcs->path_copy = NULL;
 
 	if (!mlcs->path_array)
-	{
-		write(1, mlcs->argv[0], _strlen(mlcs->argv[0]));
-		write(1, ": ", 2);
-		perror("");
-		exit(EXIT_FAILURE);
-	}
+		custom_exit(mlcs);
+
 	while (check)
 	{
 		write(1, "$ ", 2);
 
 		mlcs->getReturn = getline(&mlcs->buffer, &n, stdin);
 		if (mlcs->getReturn == -1)
-		{
-			free(mlcs->path_copy);
-			free(mlcs->path_array);
-			free(mlcs->buffer);
-			return (-1);
-		}
+			custom_exit(mlcs);
 
 		mlcs->nTokens = numToken(mlcs);
 		if (mlcs->nTokens)
 		{
 			mlcs->tokenArray = tokenize(mlcs);
 			if (!mlcs->tokenArray)
-			{
-				free(mlcs->buffer);
-				free(mlcs->path_array);
-				return (-1);
-			}
+				custom_exit(mlcs);
 			execute_command(mlcs);
 			free(mlcs->tokenArray);
 			mlcs->tokenArray = NULL;

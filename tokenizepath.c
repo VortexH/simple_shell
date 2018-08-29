@@ -17,7 +17,7 @@ char **tokenizepath(memstruct *mlcs)
 	char **tmp;
 
 	/** allocate blocks for tokens and NULL pointer **/
-	tmp = malloc(sizeof(char *) * (mlcs->nTokens + 1));
+	tmp = malloc(sizeof(char *) * 9);
 	if (!tmp)
 		return (NULL);
 
