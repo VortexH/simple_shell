@@ -18,10 +18,18 @@ int main(au int argc, char **argv, char **env)
 	if (!mlcs)
 		return (-1);
 
+	mlcs->path_array = NULL;
+	mlcs->tokenArray = NULL;
+	mlcs->tmparr = NULL;
 	mlcs->argv = argv;
 	mlcs->env = env;
+	mlcs->buffer = NULL;
+	mlcs->path_copy = NULL;
+	mlcs->direc_copy = NULL;
 	mlcs->delims = " \n\t";
 	mlcs->pathDelims = ":\0";
+	mlcs->getReturn = 0;
+	mlcs->nTokens = 0;
 	mlcs->loop_count = 1;
 
 	get_path_array(mlcs);

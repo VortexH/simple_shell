@@ -22,7 +22,6 @@ int execute_command(memstruct *mlcs)
 		{
 			custom_exit(mlcs);
 		}
-		free(mlcs->tokenArray[0]);
 
 	}
 	else
@@ -30,5 +29,7 @@ int execute_command(memstruct *mlcs)
 		wait(&status);
 	}
 
+	free(mlcs->direc_copy);
+	mlcs->direc_copy = NULL;
 	return (0);
 }

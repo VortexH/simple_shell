@@ -21,7 +21,8 @@ void custom_exit(memstruct *mlcs)
 		free(mlcs->direc_copy);
 	if (mlcs->path_copy)
 		free(mlcs->path_copy);
-	free(mlcs);
+	if (mlcs->tmparr)
+		free(mlcs->tmparr);
 
 	write(1, mlcs->argv[0], _strlen(mlcs->argv[0]));
 	write(1, ": ", 2);
@@ -39,6 +40,7 @@ void custom_exit(memstruct *mlcs)
 	write(1, ": ", 2);
 	perror("");
 
+	free(mlcs);
 	exit(EXIT_FAILURE);
 
 }

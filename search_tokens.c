@@ -16,7 +16,6 @@ char *search_tokens(memstruct *mlcs)
 		return (mlcs->tokenArray[0]);
 	for (i = 0; mlcs->path_array[i]; i++)
 	{
-		printf("directory: %s\n", mlcs->path_array[i]);
 		tokenLen = _strlen(mlcs->tokenArray[0]);
 		dirlen = _strlen(mlcs->path_array[i]);
 
@@ -32,7 +31,6 @@ char *search_tokens(memstruct *mlcs)
 		for (k = 0, j += 1; mlcs->tokenArray[0][k]; j++, k++)
 			mlcs->direc_copy[j] = mlcs->tokenArray[0][k];
 		mlcs->direc_copy[j] = '\0';
-		printf("tmp: %s\n", mlcs->direc_copy);
 /**--------------------------------------------------------------------**/
 		if (!access(mlcs->direc_copy, F_OK))
 		{

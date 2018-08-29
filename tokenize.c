@@ -14,32 +14,28 @@ char **tokenize(memstruct *mlcs)
 {
 	int i;
 	char *token;
-	char **tmparr;
 
 
 	/** allocate blocks for tokens and NULL pointer **/
-	tmparr = malloc(sizeof(char *) * (mlcs->nTokens + 1));
+	mlcs->tmparr = malloc(sizeof(char *) * (mlcs->nTokens + 1));
 
-	if (!tmparr)
+	if (!mlcs->tmparr)
 		return (NULL);
 
 	token = strtok(mlcs->buffer, mlcs->delims);
 
 	if (!_strcmp("exit", token) && mlcs->nTokens == 1)
-	{
-		free(tmparr);
 		custom_exit(mlcs);
-	}
 	if (!_strcmp("env", token) && mlcs->nTokens == 1)
 		printenv(mlcs);
 
 	for (i = 0; token != NULL; i++)
 	{
-		tmparr[i] = token;
+		mlcs->tmparr[i] = token;
 		token = strtok(NULL, mlcs->delims);
 	}
-	tmparr[i] = NULL;
+	mlcs->tmparr[i] = NULL;
 
-	return (tmparr);
+	return (mlcs->tmparr);
 
 }
