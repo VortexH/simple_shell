@@ -34,6 +34,7 @@ typedef struct mallocs
 {
 	char **path_array;
 	char **tokenArray;
+	char **tmparr;
 	char **argv;
 	char **env;
 	char *buffer;
