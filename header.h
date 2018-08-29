@@ -1,5 +1,6 @@
 #ifndef _HEADER_H_
 #define _HEADER_H_
+#define _GNU_SOURCE
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,6 +11,7 @@
 #include <dirent.h>
 
 #define au __attribute__((unused))
+
 /**
  * struct mallocs - Struct of all function variables that cross functions
  * @path_array: Array of pointers to path string values
@@ -60,7 +62,7 @@ int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 unsigned int _strspn(char *s, char *accept);
-char *_strdup(char *str, int n);
+char *_strdup(char *str);
 
 
 #endif
