@@ -1,1 +1,51 @@
-#asdkjfalsdjf
+.TH man 1 "29 August 2018" "1.0" "simple_shell man page"
+.SH NAME
+simple_shell \- a prototype implementation of the shell
+.SH SYNOPSIS
+.B simple_shell
+is a command interpreter that takes input from standard in. The basic purpose is to take input from the user and execute a given function based on that input. Being an executable file, it will be run in the same way as any other executable after compilation and will continue running until an exit call is made.
+.SH DESCRIPTION
+The functionality of the
+.B simple_shell
+is to take input from the user from standard input to execute a function. Oridinarily this will be done within the executing shell program folling a prompt from the program which mimicks the original shell prompt. Additionally, the user may choose to run commands through the shell by passing them in at the command line, though the syntax is somewhat more complicated. For example, to list all files and directories in the current directory, within the executing shell, the user would simply need to type the ls command. Instead, this can be done from the command line by typing in something like the following command:
+.TP
+echo "ls" | ./simple_shell
+.PP
+The output of both instances will be the same. While the one within the executing file, the "interactive" version, will no doubt be faster to type, it will still require that the user run the executable program. In contrast, the non-interactive one does not require the user to do so. However, either instance will require that the program has been compiled properly.
+.PP
+Any function that is found in the directories in the environmental PATH variable will be executable through the
+.B simple_shell
+function. This also means that any commands that can be run on the command line or through the original shell will execute in the same way they would normally. For example,
+.TP
+ls -la /usr/bin
+.TP
+or
+.TP
+cat  ./simple_shell
+.PP
+will both execute the commands in the same way they would in the original shell. All functionality such as directory specification and command options will execute properly in this shell prototype.
+.SH OPTIONS
+The
+.B simple_shell
+does not take any options when run in interactive mode. Non-interactive mode allows commands to be piped into the executable in a way that resembles options, but nonetheless still are not. However, any options that could be passed to the given command, ie. ls -l, will be passed to that command as a normal option and executed properly.
+.SH BUILT-IN FUNCTIONS
+There are currently 2 built-in functions that provide added user efficiency. The option to add new built-in functionality is very open and more may be implemented in the future.
+.TP
+.B exit
+This function allows the user to exit the shell at any time and additionally the most recent error output will still be available through standard error.
+.TP
+.B env
+This function allows the user to print the entire current user environment.
+.SH EXIT CODES
+Commands that cause the
+.B simple_shell
+to exit will exit with a code relating to the nature of the exit condition and can be viewed in standard error.
+.SH BUGS
+The effect and output of using arrow keys during
+.B simple_shell
+is inconsistent. Additionally, the command CTRL + C exits the shell while it should not.
+.SH AUTHORS
+.PP
+Hemant Heer (hemant.heer@gmail.com)
+.PP
+Paul Lave (pmlave@gmail.com)

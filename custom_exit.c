@@ -45,6 +45,6 @@ void custom_exit(memstruct *mlcs)
 	perror("");
 
 	free(mlcs);
-	exit(EXIT_FAILURE);
+	exit(127);
 
 }
