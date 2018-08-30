@@ -41,9 +41,9 @@ Commands that cause the
 .B simple_shell
 to exit will exit with a code relating to the nature of the exit condition and can be viewed in standard error.
 .SH BUGS
-The effect and output of using arrow keys during
+There are three total bugs that we have identified during the course of this project production. Firstly, the effect and output of using arrow keys during
 .B simple_shell
-is inconsistent. Additionally, the command CTRL + C exits the shell while it should not.
+is inconsistent. Second, the command CTRL + C exits the shell while it should not. The third and final bug that we have identified thus far is the exit error values. The value upon exit should be the last error value reported to the system. Currently it is only a 0 or a 1 for success or failure respectively.
 .SH AUTHORS
 .PP
 Hemant Heer (hemant.heer@gmail.com)
