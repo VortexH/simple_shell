@@ -18,20 +18,7 @@ int main(au int argc, char **argv, char **env)
 	if (!mlcs)
 		return (-1);
 
-	mlcs->path_array = NULL;
-	mlcs->tokenArray = NULL;
-	mlcs->tmparr = NULL;
-	mlcs->argv = argv;
-	mlcs->env = env;
-	mlcs->buffer = NULL;
-	mlcs->path_copy = NULL;
-	mlcs->direc_copy = NULL;
-	mlcs->input_token = NULL;
-	mlcs->delims = " \n\t";
-	mlcs->pathDelims = ":\0";
-	mlcs->getReturn = 0;
-	mlcs->nTokens = 0;
-	mlcs->loop_count = 1;
+	variable_initializer(mlcs, argv, env);
 
 	get_path_array(mlcs);
 
@@ -40,9 +27,11 @@ int main(au int argc, char **argv, char **env)
 
 	while (check)
 	{
-		write(1, "$ ", 2);
+		if (isatty(0) == 1)
+			write(1, "$ ", 2);
 
 		mlcs->getReturn = getline(&mlcs->buffer, &n, stdin);
+		printf("%s\n", mlcs->buffer);
 		if (mlcs->getReturn == -1)
 		{
 			if (mlcs->path_array)
@@ -56,7 +45,8 @@ int main(au int argc, char **argv, char **env)
 			if (mlcs->path_copy)
 				free(mlcs->path_copy);
 			free(mlcs);
-			write(1, "\n", 1);
+			if (isatty(0) == 1)
+				write(1, "\n", 1);
 			exit(EXIT_FAILURE);
 
 		}
@@ -71,8 +61,8 @@ int main(au int argc, char **argv, char **env)
 			free(mlcs->tokenArray);
 			mlcs->tokenArray = NULL;
 		}
-		free(mlcs->buffer);
-		mlcs->buffer = NULL;
+			free(mlcs->buffer);
+			mlcs->buffer = NULL;
 		mlcs->loop_count++;
 	}
 	return (0);

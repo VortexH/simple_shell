@@ -59,6 +59,7 @@ char *_getenv(memstruct *mlcs);
 void get_path_array(memstruct *mlcs);
 char *search_tokens(memstruct *mlcs);
 void custom_exit(memstruct *mlcs);
+void variable_initializer(memstruct *mlcs, char **argv, char **env);
 
 void printenv(memstruct *mlcs);
 char *_strpbrk(char *s, char *accept);

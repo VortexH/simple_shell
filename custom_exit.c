@@ -36,9 +36,12 @@ void custom_exit(memstruct *mlcs)
 		temp = 0;
 	}
 	write(1, ": ", 2);
-	write(1, mlcs->input_token, _strlen(mlcs->input_token));
-	free(mlcs->input_token);
-	mlcs->input_token = NULL;
+	if (_strlen(mlcs->input_token) >= 1)
+	{
+		write(1, mlcs->input_token, _strlen(mlcs->input_token));
+		free(mlcs->input_token);
+		mlcs->input_token = NULL;
+	}
 	write(1, ": ", 2);
 	perror("");
 
