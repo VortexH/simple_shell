@@ -12,9 +12,12 @@ void printenv(memstruct *mlcs)
 {
 	int i;
 
-	for (i = 0; mlcs->env[i]; i++)
+	if (mlcs->env)
 	{
-		write(1, mlcs->env[i], _strlen(mlcs->env[i]));
-		write(1, "\n", 1);
+		for (i = 0; mlcs->env[i]; i++)
+		{
+			write(1, mlcs->env[i], _strlen(mlcs->env[i]));
+			write(1, "\n", 1);
+		}
 	}
 }
