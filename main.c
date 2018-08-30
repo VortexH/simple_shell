@@ -31,7 +31,6 @@ int main(au int argc, char **argv, char **env)
 			write(1, "$ ", 2);
 
 		mlcs->getReturn = getline(&mlcs->buffer, &n, stdin);
-		printf("%s\n", mlcs->buffer);
 		if (mlcs->getReturn == -1)
 		{
 			if (mlcs->path_array)
@@ -47,7 +46,7 @@ int main(au int argc, char **argv, char **env)
 			free(mlcs);
 			if (isatty(0) == 1)
 				write(1, "\n", 1);
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 
 		}
 
@@ -61,8 +60,8 @@ int main(au int argc, char **argv, char **env)
 			free(mlcs->tokenArray);
 			mlcs->tokenArray = NULL;
 		}
-			free(mlcs->buffer);
-			mlcs->buffer = NULL;
+		free(mlcs->buffer);
+		mlcs->buffer = NULL;
 		mlcs->loop_count++;
 	}
 	return (0);

@@ -15,7 +15,6 @@ int numToken(memstruct *mlcs)
 
 
 	tmp = mlcs->buffer;
-
 	n = 0;
 	while (tmp)
 	{
