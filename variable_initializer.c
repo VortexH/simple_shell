@@ -1,5 +1,13 @@
 #include "header.h"
 
+/**
+ * variable_initializer - initialize all struct variables
+ * @mlcs: Our struct of variables
+ * @argv: Command line arguments
+ * @env: Environment variable
+ * Return: Void
+ */
+
 void variable_initializer(memstruct *mlcs, char **argv, char **env)
 {
 
