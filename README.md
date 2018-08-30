@@ -36,5 +36,4 @@ Example: gcc -Wall -Wextra -Werror -pedantic \*.c -o shell
 After compiling, you can run the executable by doing ./shell
 
 # Shell functionality
-The shell that you are running from this source has a few basic features. You can run any built-in command without specifying the absolute path of the file. By default, the shell will print >>>>> as the default prompt and waits for input from the user. You can specify the absolute path of a command or specify just the name of the executable (/bin/ls vs ls). `/bin/
-
+The shell that you are running from this source has a few basic features. You can run any built-in command without specifying the absolute path of the file. For example, `/bin/ls` will execute identically to `ls`. This also goes for the non-interactive mode, or more specifically, the shell called by the command line. For instance, running the command this way, `echo "ls" | ./shell` will generate the same output as running `ls` within the executing shell. By default, the shell will print $ as the default prompt and waits for input from the user. You can specify the absolute path of a command or specify just the name of the executable (/bin/ls vs ls). `/bin/
