@@ -39,7 +39,7 @@ char **tokenize(memstruct *mlcs)
 		if (mlcs->tmparr)
 			free(mlcs->tmparr);
 		free(mlcs);
-		exit(EXIT_FAILURE);
+		exit(errno);
 	}
 
 	if (!_strcmp("env", token) && mlcs->nTokens == 1)

@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <dirent.h>
+#include <errno.h>
 
 #define au __attribute__((unused))
 
