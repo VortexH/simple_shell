@@ -40,3 +40,8 @@ The shell that you are running from this source has a few basic features. You ca
 
 ## Bugs
 Through the process of this project we have ironed out a large portion of the bugs that we faced, but 3 specific ones still remain that directly affect the functionality that we have worked through thus far. Those specifically are the interaction with the arrow keys, `CTRL + C`, and the error output on exit calls/. The first is an issue as the output is very unusual and interferes with normal error printing. The second error prints out ^C and exits while it should print the ^C and then produce a new prompt and wait for input. The final one will only return an exit value of 0 or 1, success or failure. A more detailed error value should be printed to give the user a distinct understanding of the last error that occurred. All three are bugs we are confident can be fixed given time and may be updated in the near future.
+
+
+# Authors
+Paul Lave: pmlave@gmail.com
+Hemant Heer: hemant.heer@gmail.com
